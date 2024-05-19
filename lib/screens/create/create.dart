@@ -1,5 +1,6 @@
 // packages
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/screens/home/home.dart';
 import "package:google_fonts/google_fonts.dart";
 import 'package:uuid/uuid.dart';
 
@@ -48,14 +49,36 @@ class _CreateState extends State<Create> {
     });
   }
 
+  // display dialog
+  void dialogDisplay(String headingText, String bodyText) {
+    showDialog(
+        context: context,
+        builder: (context2) {
+          return AlertDialog(
+            title: StyledHeading(headingText),
+            content: StyledText(bodyText),
+            actions: [
+              StyledButton(
+                  onPressed: () {
+                    Navigator.pop(context2);
+                  },
+                  child: const StyledHeading("Close"))
+            ],
+            actionsAlignment: MainAxisAlignment.center,
+          );
+        });
+  }
+
   // form submit handler
   void handleSubmit() {
     if (_nameController.text.trim().isEmpty) {
       // show error dialog - missing name
+      dialogDisplay("Missing name", "Every good character needs a name!");
       return;
     }
     if (_sloganController.text.trim().isEmpty) {
       // show error dialog - missing slogan
+      dialogDisplay("Missing slogan", "Every good character needs a slogan!");
       return;
     }
     characters.add(Character(
@@ -63,6 +86,9 @@ class _CreateState extends State<Create> {
         slogan: _sloganController.text.trim(),
         vocation: selectedVocation,
         id: uuid.v4()));
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context2) => const Home()));
   }
 
   @override
