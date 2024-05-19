@@ -33,7 +33,6 @@ class Character with Stats {
 }
 
 // dummy character data
-
 List<Character> characters = [
   Character(
       id: '1',

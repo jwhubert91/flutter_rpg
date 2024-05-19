@@ -8,6 +8,7 @@ import 'package:flutter_rpg/theme.dart';
 
 // models
 import 'package:flutter_rpg/models/vocation.dart';
+import 'package:flutter_rpg/models/character.dart';
 
 // widgets
 import 'package:flutter_rpg/screens/create/vocation_card.dart';
@@ -57,6 +58,11 @@ class _CreateState extends State<Create> {
       // show error dialog - missing slogan
       return;
     }
+    characters.add(Character(
+        name: _nameController.text.trim(),
+        slogan: _sloganController.text.trim(),
+        vocation: selectedVocation,
+        id: uuid.v4()));
   }
 
   @override
@@ -128,6 +134,12 @@ class _CreateState extends State<Create> {
               vocation: Vocation.wizard,
               selected: selectedVocation == Vocation.wizard,
             ),
+
+            // good luck message
+            Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+            const Center(child: StyledHeading("Good luck!")),
+            const Center(child: StyledText("And enjoy the journey...")),
+            const SizedBox(height: 30),
 
             // submit button
             Center(
