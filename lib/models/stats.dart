@@ -38,25 +38,23 @@ mixin Stats {
       if (stat == "skill") {
         _skill++;
       }
+      _points--;
     }
   }
 
   void decreaseStat(String stat) {
     if (stat == "health" && _health > 5) {
       _health--;
-      _points++;
     }
     if (stat == "attack" && _attack > 5) {
       _attack--;
-      _points++;
     }
     if (stat == "defense" && _defense > 5) {
       _defense--;
-      _points++;
     }
     if (stat == "skill" && _skill > 5) {
       _skill--;
-      _points++;
     }
+    _points++;
   }
 }
