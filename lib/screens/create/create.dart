@@ -1,7 +1,9 @@
 // packages
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/screens/home/home.dart';
+import 'package:flutter_rpg/services/character_store.dart';
 import "package:google_fonts/google_fonts.dart";
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 // theme
@@ -18,14 +20,14 @@ import 'package:flutter_rpg/shared/styled_text.dart';
 
 var uuid = const Uuid();
 
-class Create extends StatefulWidget {
-  const Create({super.key});
+class CreateScreen extends StatefulWidget {
+  const CreateScreen({super.key});
 
   @override
-  State<Create> createState() => _CreateState();
+  State<CreateScreen> createState() => _CreateScreenState();
 }
 
-class _CreateState extends State<Create> {
+class _CreateScreenState extends State<CreateScreen> {
   // private methods (text controllers)
   final _nameController = TextEditingController();
   final _sloganController = TextEditingController();
@@ -81,7 +83,8 @@ class _CreateState extends State<Create> {
       dialogDisplay("Missing slogan", "Every good character needs a slogan!");
       return;
     }
-    characters.add(Character(
+
+    Provider.of<CharacterStore>(context, listen: false).addCharacter(Character(
         name: _nameController.text.trim(),
         slogan: _sloganController.text.trim(),
         vocation: selectedVocation,
