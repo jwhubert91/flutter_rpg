@@ -32,9 +32,6 @@ class _CreateScreenState extends State<CreateScreen> {
   final _nameController = TextEditingController();
   final _sloganController = TextEditingController();
 
-  // public vocation state
-  Vocation selectedVocation = Vocation.junkie;
-
   // custom dispose function for text controllers
   // (fires when screen is no longer in view)
   @override
@@ -43,6 +40,9 @@ class _CreateScreenState extends State<CreateScreen> {
     _sloganController.dispose();
     super.dispose();
   }
+
+  // public vocation state
+  Vocation selectedVocation = Vocation.junkie;
 
   // handle vocation state variable selection
   void updateVocation(Vocation vocation) {
